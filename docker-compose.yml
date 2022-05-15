@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+    app:
+      image: atilarampazo/php-8-fpm
+      user: "1001:1001"
+      build:
+        context: .
+        target: dev
+      container_name: php-tdd
+      environment:
+        - XDEBUG_MODE=coverage
+      volumes:
+        - ./:/app
+      networks:
+        - php_tdd
+
+networks:
+  php_tdd:
+    driver: bridge
